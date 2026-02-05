@@ -86,7 +86,11 @@ sudo nano /etc/snort/snort.lua
 ### Minimal Configuration
 
 ``` lua
-HOME_NET = '192.168.1.1/24'
+--------------------------------------------------
+-- Minimal Snort 3 configuration
+--------------------------------------------------
+
+HOME_NET = '192.168.1.0/24'
 EXTERNAL_NET = 'any'
 
 ips =
@@ -101,13 +105,20 @@ alert_fast =
     file = true,
 }
 
+--------------------------------------------------
+-- default modules
+--------------------------------------------------
 detection = { }
 search_engine = { }
 output = { }
 
+--------------------------------------------------
+-- rate_filter configuration
+--------------------------------------------------
 rate_filter =
 {
     {
+        -- match on our ruleâ€™s SID
         sid = 1000001,
         track = "by_src",
         count = 1,
