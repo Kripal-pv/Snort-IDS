@@ -203,6 +203,19 @@ This screenshot shows Snort successfully detecting ICMP ping traffic and generat
 
 ![ICMP Alert Output](screenshots/icmp-alert-output.png)
 
+---
+
+### Nmap Scan Traffic Test
+This screenshot demonstrates running an Nmap SYN scan against the monitored network.
+
+![Nmap Scan Test](screenshots/nmap-scan-test.png)
+
+---
+
+### Nmap Scan Alert Detection Output
+This screenshot shows Snort detecting Nmap SYN scan traffic and generating intrusion alerts.
+
+![Nmap Alert Output](screenshots/nmap-alert-output.png)
 
 ------------------------------------------------------------------------
 
