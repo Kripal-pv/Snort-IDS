@@ -182,11 +182,27 @@ including:
 
 ------------------------------------------------------------------------
 
-## 📸 Suggested Screenshots
+## 📸 Screenshots
 
--   Snort running terminal\
--   Alert log output\
--   hping3 test traffic
+### ICMP Rule Configuration and Snort Setup
+This screenshot shows the creation of ICMP detection rules and Snort configuration using `local.rules` and `snort.lua`.
+
+![ICMP Rule Setup](screenshots/icmp-rule-config.png)
+
+---
+
+### ICMP Ping Traffic Test
+This screenshot demonstrates generating ICMP traffic using the ping command to test detection rules.
+
+![Ping Test](screenshots/ping-test.png)
+
+---
+
+### ICMP Alert Detection Output
+This screenshot shows Snort successfully detecting ICMP ping traffic and generating alerts.
+
+![ICMP Alert Output](screenshots/icmp-alert-output.png)
+
 
 ------------------------------------------------------------------------
 
