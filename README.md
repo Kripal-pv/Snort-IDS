@@ -187,7 +187,7 @@ including:
 ### ICMP Rule Configuration and Snort Setup
 This screenshot shows the creation of ICMP detection rules and Snort configuration using `local.rules` and `snort.lua`.
 
-![ICMP Rule Setup](screenshots/Screenshot 2026-02-05 223648.png)
+![ICMP Rule Setup](screenshots/rule.png)
 ![ICMP Rule Setup](screenshots/icmp-rule-config.png)
 
 ---
