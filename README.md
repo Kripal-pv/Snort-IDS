@@ -40,7 +40,7 @@ testing alert generation in a controlled lab environment.
 
 ## 🌐 Network Configuration
 
-    HOME_NET = 192.168.1.0/24
+    HOME_NET = 192.168.1.1/24
     EXTERNAL_NET = any
 
 ------------------------------------------------------------------------
