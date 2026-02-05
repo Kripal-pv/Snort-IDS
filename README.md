@@ -22,10 +22,19 @@ testing alert generation in a controlled lab environment.
 
 ## 🧰 Tools & Technologies
 
--   Snort 3
--   Kali Linux / Ubuntu
--   hping3
+-   Snort 3\
+-   Kali Linux / Ubuntu\
+-   hping3\
 -   Networking Lab Environment
+
+------------------------------------------------------------------------
+
+## 🧪 Lab Environment
+
+-   IDS System: Snort 3\
+-   Attacker Simulation Tool: hping3\
+-   Network Range: 192.168.1.0/24\
+-   Monitoring Interface: eth0
 
 ------------------------------------------------------------------------
 
@@ -38,7 +47,7 @@ testing alert generation in a controlled lab environment.
 
 ## ⚙️ Step 1: Create Custom Snort Rules
 
-Navigate to the Snort rules directory:
+Navigate to rules directory:
 
 ``` bash
 cd /etc/snort/rules
@@ -48,13 +57,15 @@ sudo nano local.rules
 ### 🔍 Rule 1: Nmap SYN Scan Detection
 
 ``` bash
-alert tcp any any -> 192.168.1.0/24 any (msg:"DETECT NMAP SYN scan - multiple SYNs"; flags:S; sid:1000001; rev:1;)
+alert tcp any any -> 192.168.1.1/24 any (msg:"DETECT NMAP SYN scan - multiple SYNs"; flags:S; sid:1000001; rev:1;)
 ```
+
+Detects TCP SYN packets indicating reconnaissance scanning activity.
 
 ### 🔍 Rule 2: ICMP Ping Detection
 
 ``` bash
-alert icmp any any -> 192.168.1.0/24 any (
+alert icmp any any -> 192.168.1.1/24 any (
   msg:"ICMP Ping Detected";
   itype:8;
   sid:1000002;
@@ -62,20 +73,20 @@ alert icmp any any -> 192.168.1.0/24 any (
 )
 ```
 
+Detects ICMP echo request packets used in network discovery.
+
 ------------------------------------------------------------------------
 
 ## ⚙️ Step 2: Configure Snort (snort.lua)
-
-Navigate to configuration file:
 
 ``` bash
 sudo nano /etc/snort/snort.lua
 ```
 
-### Minimal Configuration Example
+### Minimal Configuration
 
 ``` lua
-HOME_NET = '192.168.1.0/24'
+HOME_NET = '192.168.1.1/24'
 EXTERNAL_NET = 'any'
 
 ips =
@@ -118,8 +129,6 @@ sudo snort -c /etc/snort/snort.lua -i eth0 -A alert_full
 
 ## 🧪 Step 4: Generate Test Traffic
 
-### Using hping3:
-
 ``` bash
 sudo hping3 -p 80 -S 192.168.1.X
 ```
@@ -128,8 +137,11 @@ sudo hping3 -p 80 -S 192.168.1.X
 
 ## 🚨 Expected Output
 
-Snort generates alerts when suspicious traffic is detected, including: -
-Nmap SYN scan detection - ICMP ping detection
+Snort generates alerts when reconnaissance traffic is detected,
+including:
+
+-   Nmap SYN scan alerts\
+-   ICMP ping detection alerts
 
 ------------------------------------------------------------------------
 
@@ -145,30 +157,39 @@ Nmap SYN scan detection - ICMP ping detection
 
 ## ⚠️ Limitations
 
--   Basic rule may generate false positives\
--   Threshold tuning required for production environments
+-   Basic rules may generate false positives\
+-   Requires threshold tuning for production use
 
 ------------------------------------------------------------------------
 
 ## 🚀 Future Improvements
 
--   Implement threshold-based detection
--   Add advanced attack signatures
--   Integrate logging with SIEM tools
--   Develop automated alert analysis
+-   Implement threshold-based detection\
+-   Add advanced attack signatures\
+-   Integrate alerts with SIEM platforms\
+-   Automate alert analysis
 
 ------------------------------------------------------------------------
 
 ## 📸 Suggested Screenshots
 
--   Snort running output\
--   Alert logs\
--   hping3 testing output
+-   Snort running terminal\
+-   Alert log output\
+-   hping3 test traffic
 
 ------------------------------------------------------------------------
 
 ## 📚 References
 
 -   Snort Official Documentation\
--   Nmap Documentation\
--   Cybersecurity IDS Best Practices
+    https://docs.snort.org/
+
+-   Snort Rule Writing Guide\
+    https://docs.snort.org/rules/
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Author
+
+Kripal PV\
+Cybersecurity Student \| SOC & Blue Team Enthusiast
